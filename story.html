@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hollow Knight: Silksong - Complete story guide, lore, and narrative details about Hornet's journey through Pharloom">
+    <meta name="keywords" content="Hollow Knight Silksong, story, lore, Hornet, Pharloom, narrative, plot">
+    <meta name="author" content="Hollow Knight Silksong Fan Site">
+    <title>Story & Lore - Hollow Knight: Silksong</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Story-specific styles */
+        .story-hero {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f1a 100%);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="web" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="1" fill="%23d4af37" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23web)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(180deg, #d4af37, transparent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: #d4af37;
+            border: 4px solid #0a0a0f;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background: rgba(26, 26, 46, 0.8);
+            position: relative;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .character-profile {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .character-image {
+            background: linear-gradient(135deg, #1a1a2e, #2a2a4e);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .character-info h3 {
+            color: #d4af37;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .world-map {
+            background: rgba(26, 26, 46, 0.5);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .characters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .character-card {
+            background: rgba(26, 26, 46, 0.5);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .character-card:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .character-avatar {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .character-card h3 {
+            color: #d4af37;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .character-card p {
+            color: #c0c0c0;
+            line-height: 1.6;
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            
+            .timeline-item::after {
+                left: 15px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0%;
+            }
+            
+            .character-profile {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>Hollow Knight: Silksong</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="game-intro.html" class="nav-link">Game Intro</a></li>
+                <li><a href="story.html" class="nav-link active">Story</a></li>
+                <li><a href="gameplay.html" class="nav-link">Gameplay</a></li>
+                <li><a href="characters.html" class="nav-link">Characters</a></li>
+                <li><a href="locations.html" class="nav-link">Locations</a></li>
+                <li><a href="guides.html" class="nav-link">Guides</a></li>
+                <li><a href="media.html" class="nav-link">Media</a></li>
+                <li><a href="news.html" class="nav-link">News</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Story Hero -->
+    <section class="story-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Story & Lore</h1>
+                <p>Discover the epic tale of Hornet's journey through Pharloom</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Story Overview -->
+    <section class="main-story">
+        <div class="container">
+            <div class="story-intro">
+                <h2>The Tale of Hornet</h2>
+                <p>Hollow Knight: Silksong takes place after the events of the original Hollow Knight. The warrior Hornet, princess-protector of the fallen kingdom of Hallownest, finds herself kidnapped by mysterious veiled bugs and transported to the distant kingdom of Pharloom.</p>
+                <p>With the intervention of a mysterious winged insect, Hornet breaks free of her mystical bindings and escapes her captors. She soon learns that her kidnappers were adherents of the Citadel, a powerful religious institution located at Pharloom's summit. Determined to uncover the reason behind her capture, Hornet begins her ascent to the Citadel.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Character Profile -->
+    <section class="character-profile-section">
+        <div class="container">
+            <h2 class="section-title">Hornet: The Protagonist</h2>
+            <div class="character-profile">
+                <div class="character-image">
+                    <div style="font-size: 8rem; color: #d4af37;">👑</div>
+                    <h3>Hornet</h3>
+                    <p>Princess-Protector of Hallownest</p>
+                </div>
+                <div class="character-info">
+                    <h3>Background</h3>
+                    <p>Hornet is the daughter of the Pale King and Herrah the Beast, making her a unique hybrid of wyrm and spider. Born to serve as a bridge between the Wyrm's kingdom and the Deepnest spiders, she inherited both the wisdom of the Pale King and the fierce independence of her mother. As the princess-protector of Hallownest, she has dedicated her life to protecting the kingdom and its inhabitants from the Infection that plagued the land.</p>
+                    
+                    <h3>Abilities</h3>
+                    <p>Unlike the Knight, Hornet is incredibly agile and fast. She wields a needle and thread as her primary weapons, utilizing her silk-based abilities for both combat and traversal. Her unique fighting style emphasizes speed, precision, and acrobatic maneuvers. Key abilities include:</p>
+                    <ul>
+                        <li><strong>Silk Healing:</strong> Uses silk threads to mend wounds</li>
+                        <li><strong>Silk Bridges:</strong> Creates temporary platforms for traversal</li>
+                        <li><strong>Needle Combat:</strong> Masterful use of her signature needle weapon</li>
+                        <li><strong>Acrobatic Movement:</strong> Enhanced speed and agility for complex platforming</li>
+                    </ul>
+                    
+                    <h3>Motivation</h3>
+                    <p>Driven by a fierce determination to uncover the truth behind her kidnapping and protect the innocent, Hornet ventures into the unknown depths of Pharloom. Her journey is not just about escape, but about understanding her own connection to the silk that plagues this new kingdom and finding her place in a world far from home.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supporting Characters -->
+    <section class="supporting-characters">
+        <div class="container">
+            <h2 class="section-title">Key Characters in Pharloom</h2>
+            <div class="characters-grid">
+                <div class="character-card">
+                    <div class="character-avatar">🦋</div>
+                    <h3>The Winged Insect</h3>
+                    <p>A mysterious benefactor who helps Hornet escape her initial captivity. Little is known about this character, but their intervention suggests they may have their own agenda regarding the Citadel and Hornet's unique abilities.</p>
+                </div>
+                <div class="character-card">
+                    <div class="character-avatar">👵</div>
+                    <h3>The Chapel Maid</h3>
+                    <p>An elderly resident of Pharloom who provides Hornet with crucial information about the Citadel and the veiled bugs who captured her. Her knowledge of the kingdom's history and politics proves invaluable to Hornet's journey.</p>
+                </div>
+                <div class="character-card">
+                    <div class="character-avatar">🗺️</div>
+                    <h3>Shakra</h3>
+                    <p>A skilled cartographer encountered in The Marrow who provides Hornet with maps, tools, and essential items. Shakra operates a trading post where Hornet can exchange Rosaries (local currency) for upgrades and supplies.</p>
+                </div>
+                <div class="character-card">
+                    <div class="character-avatar">🔔</div>
+                    <h3>The Bell Beast</h3>
+                    <p>A massive, imprisoned creature that Hornet frees during her journey. Once liberated, the Bell Beast grants Hornet enhanced mobility options, allowing her to travel more freely across Pharloom's vast landscape.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Timeline -->
+    <section class="story-timeline">
+        <div class="container">
+            <h2 class="section-title">Journey Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>The Kidnapping</h3>
+                        <p>Hornet is captured by veiled bugs in Hallownest and transported to Pharloom through mystical means.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>The Escape</h3>
+                        <p>With help from a mysterious winged insect, Hornet breaks free from her bindings and escapes her initial captors.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Meeting the Chapel Maid</h3>
+                        <p>Hornet encounters the elderly Chapel Maid, who informs her about the Citadel and her captors' motives.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Bone Bottom</h3>
+                        <p>Hornet arrives in Bone Bottom, a small town inhabited by pilgrims seeking answers in Pharloom.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>The Marrow</h3>
+                        <p>She meets Shakra, a cartographer who provides maps, tools, and items in exchange for Rosaries.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>The Bell Beast</h3>
+                        <p>Hornet frees the Bell Beast, gaining the ability to travel across Pharloom more freely.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pharloom Overview -->
+    <section class="pharloom-overview">
+        <div class="container">
+            <h2 class="section-title">The Kingdom of Pharloom</h2>
+            <div class="world-map">
+                <h3>A Land Enshrouded in Silk</h3>
+                <p>Pharloom is a vast, interconnected kingdom filled with unique enemies, challenging bosses, and intricate environments. Unlike Hallownest, which was plagued by the Infection, Pharloom suffers from a different affliction - silken threads that choke the land and drive its residents to madness.</p>
+                
+                <div class="pharloom-features">
+                    <div class="feature-item">
+                        <h4>🕸️ Silk Infestation</h4>
+                        <p>Much of Pharloom is choked by silken threads that ensnare residents and pilgrims alike, driving them to madness. Hornet's own ability to produce silk makes her particularly interesting to the veiled bugs who captured her.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>⛪ The Citadel</h4>
+                        <p>A massive religious institution located at Pharloom's summit, serving as the ultimate destination for Hornet's journey. The Citadel is ruled by powerful beings who may hold the answers to Hornet's kidnapping.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🏘️ Pilgrim Towns</h4>
+                        <p>Scattered throughout Pharloom are small towns inhabited by pilgrims seeking answers, refuge, or purpose in the silk-choked kingdom. These settlements serve as safe havens and quest hubs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Locations -->
+    <section class="key-locations">
+        <div class="container">
+            <h2 class="section-title">Key Story Locations</h2>
+            <div class="locations-grid">
+                <div class="location-card">
+                    <h3>🏘️ Bone Bottom</h3>
+                    <p>A small town inhabited by pilgrims seeking answers in Pharloom. This serves as one of the first major settlements Hornet encounters on her journey.</p>
+                </div>
+                <div class="location-card">
+                    <h3>🗺️ The Marrow</h3>
+                    <p>A hub area where Hornet meets Shakra, a cartographer who provides essential maps, tools, and items for local currency (Rosaries).</p>
+                </div>
+                <div class="location-card">
+                    <h3>🏰 Greymoor</h3>
+                    <p>One of the largest areas Team Cherry has ever created, featuring intricate architecture and challenging platforming sequences.</p>
+                </div>
+                <div class="location-card">
+                    <h3>⛪ The Citadel</h3>
+                    <p>The ultimate destination of Hornet's journey, a massive religious institution at Pharloom's summit that holds the answers she seeks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Themes -->
+    <section class="story-themes">
+        <div class="container">
+            <h2 class="section-title">Major Themes</h2>
+            <div class="themes-grid">
+                <div class="theme-card">
+                    <div class="theme-icon">🕸️</div>
+                    <h3>Fate vs. Free Will</h3>
+                    <p>Hornet struggles against forces that seek to control her destiny, questioning whether her path is predetermined or if she can forge her own future.</p>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-icon">🏛️</div>
+                    <h3>Religion and Power</h3>
+                    <p>The Citadel represents the intersection of faith and authority, exploring how institutions wield power over believers.</p>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-icon">🧵</div>
+                    <h3>Connection and Isolation</h3>
+                    <p>The silk threads that plague Pharloom symbolize both connection and entrapment, reflecting the game's exploration of relationships and independence.</p>
+                </div>
+                <div class="theme-card">
+                    <div class="theme-icon">👑</div>
+                    <h3>Identity and Purpose</h3>
+                    <p>Hornet's journey is also one of self-discovery, as she confronts her heritage and defines her role in the world.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+        <div class="container">
+            <h2 class="section-title">Explore More</h2>
+            <div class="links-grid">
+                <a href="characters.html" class="link-card">
+                    <h3>👥 Character Guide</h3>
+                    <p>Meet the inhabitants of Pharloom</p>
+                </a>
+                <a href="locations.html" class="link-card">
+                    <h3>🗺️ World Map</h3>
+                    <p>Explore every corner of Pharloom</p>
+                </a>
+                <a href="gameplay.html" class="link-card">
+                    <h3>⚔️ Combat System</h3>
+                    <p>Master Hornet's abilities</p>
+                </a>
+                <a href="guides.html" class="link-card">
+                    <h3>📖 Complete Guide</h3>
+                    <p>Full walkthrough and tips</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Hollow Knight: Silksong</h3>
+                <p>Your comprehensive source for all things Silksong</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="game-intro.html">Game Info</a></li>
+                    <li><a href="guides.html">Guides</a></li>
+                    <li><a href="news.html">News</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Game Info</h4>
+                <ul>
+                    <li><a href="gameplay.html">Gameplay</a></li>
+                    <li><a href="characters.html">Characters</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="media.html">Media</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">Reddit</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Hollow Knight: Silksong Fan Site. This is an unofficial fan website. Hollow Knight: Silksong is a trademark of Team Cherry.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

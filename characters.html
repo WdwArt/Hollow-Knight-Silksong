@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hollow Knight: Silksong - Complete character guide featuring Hornet, allies, enemies, and boss information">
+    <meta name="keywords" content="Hollow Knight Silksong, characters, Hornet, allies, enemies, bosses, NPCs, character guide">
+    <meta name="author" content="Hollow Knight Silksong Fan Site">
+    <title>Characters - Hollow Knight: Silksong</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Characters-specific styles */
+        .characters-hero {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .characters-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="characters" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="2" fill="%23d4af37" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23characters)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .character-categories {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .category-button {
+            background: rgba(26, 26, 46, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #e8e8e8;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .category-button:hover,
+        .category-button.active {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .character-card {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .character-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .character-portrait {
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a2e, #2a2a4e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #d4af37;
+        }
+
+        .character-info {
+            padding: 1.5rem;
+        }
+
+        .character-name {
+            color: #d4af37;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .character-title {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .character-description {
+            color: #c0c0c0;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .character-traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .trait-tag {
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .character-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .type-protagonist {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
+        }
+
+        .type-ally {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196F3;
+            border: 1px solid #2196F3;
+        }
+
+        .type-enemy {
+            background: rgba(244, 67, 54, 0.2);
+            color: #F44336;
+            border: 1px solid #F44336;
+        }
+
+        .type-boss {
+            background: rgba(156, 39, 176, 0.2);
+            color: #9C27B0;
+            border: 1px solid #9C27B0;
+        }
+
+        .type-npc {
+            background: rgba(255, 193, 7, 0.2);
+            color: #FFC107;
+            border: 1px solid #FFC107;
+        }
+
+        .featured-character {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(212, 175, 55, 0.1));
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            margin-bottom: 3rem;
+        }
+
+        .featured-character .character-portrait {
+            height: 250px;
+            font-size: 6rem;
+        }
+
+        .character-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.5rem;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .character-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .character-categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-button {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>Hollow Knight: Silksong</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="game-intro.html" class="nav-link">Game Intro</a></li>
+                <li><a href="story.html" class="nav-link">Story</a></li>
+                <li><a href="gameplay.html" class="nav-link">Gameplay</a></li>
+                <li><a href="characters.html" class="nav-link active">Characters</a></li>
+                <li><a href="locations.html" class="nav-link">Locations</a></li>
+                <li><a href="guides.html" class="nav-link">Guides</a></li>
+                <li><a href="media.html" class="nav-link">Media</a></li>
+                <li><a href="news.html" class="nav-link">News</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Characters Hero -->
+    <section class="characters-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Characters</h1>
+                <p>Meet the inhabitants of Pharloom and discover their roles in Hornet's journey</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Character Categories -->
+    <section class="character-categories">
+        <div class="container">
+            <button class="category-button active" onclick="showCategory('all')">All Characters</button>
+            <button class="category-button" onclick="showCategory('protagonist')">Protagonist</button>
+            <button class="category-button" onclick="showCategory('allies')">Allies</button>
+            <button class="category-button" onclick="showCategory('enemies')">Enemies</button>
+            <button class="category-button" onclick="showCategory('bosses')">Bosses</button>
+            <button class="category-button" onclick="showCategory('npcs')">NPCs</button>
+        </div>
+    </section>
+
+    <!-- Featured Character: Hornet -->
+    <section class="featured-character-section">
+        <div class="container">
+            <div class="character-card featured-character">
+                <div class="character-portrait">
+                    <div>👑</div>
+                </div>
+                <div class="character-info">
+                    <span class="character-type type-protagonist">Protagonist</span>
+                    <h2 class="character-name">Hornet</h2>
+                    <p class="character-title">Princess-Protector of Hallownest</p>
+                    <p class="character-description">
+                        Hornet is the daughter of the Pale King and Herrah the Beast, making her a unique hybrid of wyrm and spider. As the princess-protector of Hallownest, she has dedicated her life to protecting the kingdom and its inhabitants. After being kidnapped and transported to Pharloom, she must uncover the truth behind her capture while navigating this strange new kingdom.
+                    </p>
+                    <div class="character-traits">
+                        <span class="trait-tag">Agile</span>
+                        <span class="trait-tag">Skilled Fighter</span>
+                        <span class="trait-tag">Silk Powers</span>
+                        <span class="trait-tag">Determined</span>
+                        <span class="trait-tag">Protective</span>
+                    </div>
+                    <div class="character-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">95</div>
+                            <div class="stat-label">Speed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">85</div>
+                            <div class="stat-label">Strength</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">90</div>
+                            <div class="stat-label">Agility</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">88</div>
+                            <div class="stat-label">Intelligence</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Allies Section -->
+    <section class="allies-section">
+        <div class="container">
+            <h2 class="section-title">Allies & Companions</h2>
+            <div class="character-grid">
+                <div class="character-card">
+                    <div class="character-portrait">
+                        <div>👵</div>
+                    </div>
+                    <div class="character-info">
+                        <span class="character-type type-ally">Ally</span>
+                        <h3 class="character-name">Chapel Maid</h3>
+                        <p class="character-title">Elderly Guide</p>
+                        <p class="character-description">
+                            An elderly resident of Pharloom who provides Hornet with crucial information about the Citadel and her captors. Her wisdom and knowledge of the kingdom prove invaluable to Hornet's journey.
+                        </p>
+                        <div class="character-traits">
+                            <span class="trait-tag">Wise</span>
+                            <span class="trait-tag">Knowledgeable</span>
+                            <span class="trait-tag">Helpful</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-portrait">
+                        <div>🗺️</div>
+                    </div>
+                    <div class="character-info">
+                        <span class="character-type type-ally">Ally</span>
+                        <h3 class="character-name">Shakra</h3>
+                        <p class="character-title">Cartographer</p>
+                        <p class="character-description">
+                            A skilled cartographer who sells maps, tools, and items in exchange for Rosaries. Shakra provides essential navigation aids and equipment for Hornet's journey through Pharloom.
+                        </p>
+                        <div class="character-traits">
+                            <span class="trait-tag">Merchant</span>
+                            <span class="trait-tag">Explorer</span>
+                            <span class="trait-tag">Resourceful</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-portrait">
+                        <div>🦋</div>
+                    </div>
+                    <div class="character-info">
+                        <span class="character-type type-ally">Ally</span>
+                        <h3 class="character-name">Winged Insect</h3>
+                        <p class="character-title">Mysterious Benefactor</p>
+                        <p class="character-description">
+                            A mysterious winged insect who intervenes to help Hornet escape her mystical bindings. Little is known about this character, but their intervention proves crucial to Hornet's freedom.
+                        </p>
+                        <div class="character-traits">
+                            <span class="trait-tag">Mysterious</span>
+                            <span class="trait-tag">Powerful</span>
+                            <span class="trait-tag">Enigmatic</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NPCs Section -->
+    <section class="npcs-section">
+        <div class="container">
+            <h2 class="section-title">Notable NPCs</h2>
+            <div class="character-grid">
+                <div class="character-card">
+                    <div class="character-portrait">
+                        <div>🚶‍♀️</div>
+                    </div>
+                    <div class="character-info">
+                        <span class="character-type type-npc">NPC</span>
+                        <h3 class="character-name">Pilgrims</h3>
+                        <p class="character-title">Travelers of Pharloom</p>
+                        <p class="character-description">
+                            Various pilgrims inhabiting towns like Bone Bottom, seeking answers, refuge, or purpose in the silk-choked kingdom. They provide quests, information, and services.
+                        </p>
+                        <div class="character-traits">
+                            <span class="trait-tag">Diverse</span>
+                            <span class="trait-tag">Quest-givers</span>
+                            <span class="trait-tag">Merchants</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-portrait">
+                        <div>🔔</div>
+                    </div>
+                    <div class="character-info">
+                        <span class="character-type type-npc">NPC</span>
+                        <h3 class="character-name">Bell Beast</h3>
+                        <p class="character-title">Ancient Guardian</p>
+                        <p class="character-description">
+                            A powerful beast that Hornet frees, who in turn grants her the ability to travel across Pharloom more freely. This creature plays a pivotal role in expanding Hornet's mobility.
+                        </p>
+                        <div class="character-traits">
+                            <span class="trait-tag">Ancient</span>
+                            <span class="trait-tag">Powerful</span>
+                            <span class="trait-tag">Grateful</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-portrait">
+                        <div>⛪</div>
+                    </div>
+                    <div class="character-info">
+                        <span class="character-type type-npc">NPC</span>
+                        <h3 class="character-name">Citadel Adepts</h3>
+                        <p class="character-title">Religious Followers</p>
+                        <p class="character-description">
+                            Followers of the Citadel who may provide insight into the religious institution's workings and potentially offer alternative perspectives on Hornet's situation.
+                        </p>
+                        <div class="character-traits">
+                            <span class="trait-tag">Religious</span>
+                            <span class="trait-tag">Knowledgeable</span>
+                            <span class="trait-tag">Complex</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bosses Section -->
+    <section class="bosses-section">
+        <div class="container">
+            <h2 class="section-title">Major Bosses</h2>
+            <div class="character-grid">
+                <div class="character-card">
+                    <div class="character-portrait">
+                        <div>🕷️</div>
+                    </div>
+                    <div class="character-info">
+                        <span class="character-type type-boss">Boss</span>
+                        <h3 class="character-name">The Weaver</h3>
+                        <p class="character-title">Master of Silk</p>
+                        <p class="character-description">
+                            A powerful boss who controls the threads of fate and reality itself. This encounter tests Hornet's mastery of her own silk abilities against a true master.
+                        </p>
+                        <div class="character-traits">
+                            <span class="trait-tag">Silk Master</span>
+                            <span class="trait-tag">Reality Warper</span>
+                            <span class="trait-tag">Challenging</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-portrait">
+                        <div>⚔️</div>
+                    </div>
+                    <div class="character-info">
+                        <span class="character-type type-boss">Boss</span>
+                        <h3 class="character-name">Citadel Guardian</h3>
+                        <p class="character-title">Ultimate Protector</p>
+                        <p class="character-description">
+                            The formidable guardian of the Citadel's upper chambers, wielding ancient powers and serving as one of the ultimate challenges in Hornet's ascent.
+                        </p>
+                        <div class="character-traits">
+                            <span class="trait-tag">Ancient</span>
+                            <span class="trait-tag">Powerful</span>
+                            <span class="trait-tag">Strategic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-portrait">
+                        <div>🌟</div>
+                    </div>
+                    <div class="character-info">
+                        <span class="character-type type-boss">Boss</span>
+                        <h3 class="character-name">The Radiance</h3>
+                        <p class="character-title">Being of Light</p>
+                        <p class="character-description">
+                            A being of pure light and power, potentially connected to the events of Hallownest. This boss represents one of the ultimate challenges in Pharloom.
+                        </p>
+                        <div class="character-traits">
+                            <span class="trait-tag">Ethereal</span>
+                            <span class="trait-tag">Light-based</span>
+                            <span class="trait-tag">Mysterious</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enemy Types -->
+    <section class="enemy-types">
+        <div class="container">
+            <h2 class="section-title">Enemy Categories</h2>
+            <div class="character-grid">
+                <div class="character-card">
+                    <div class="character-portrait">
+                        <div>🕸️</div>
+                    </div>
+                    <div class="character-info">
+                        <span class="character-type type-enemy">Enemy</span>
+                        <h3 class="character-name">Silk-Infected</h3>
+                        <p class="character-title">Madness Victims</p>
+                        <p class="character-description">
+                            Residents of Pharloom driven mad by the silken threads that choke the kingdom. These enemies attack indiscriminately and represent the tragic cost of the silk infestation.
+                        </p>
+                        <div class="character-traits">
+                            <span class="trait-tag">Numerous</span>
+                            <span class="trait-tag">Aggressive</span>
+                            <span class="trait-tag">Tragic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-portrait">
+                        <div>👹</div>
+                    </div>
+                    <div class="character-info">
+                        <span class="character-type type-enemy">Enemy</span>
+                        <h3 class="character-name">Citadel Forces</h3>
+                        <p class="character-title">Religious Soldiers</p>
+                        <p class="character-description">
+                            Soldiers and enforcers of the Citadel who actively pursue Hornet and attempt to prevent her from reaching the summit. They are organized and dangerous foes.
+                        </p>
+                        <div class="character-traits">
+                            <span class="trait-tag">Organized</span>
+                            <span class="trait-tag">Well-equipped</span>
+                            <span class="trait-tag">Determined</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="character-card">
+                    <div class="character-portrait">
+                        <div>🦗</div>
+                    </div>
+                    <div class="character-info">
+                        <span class="character-type type-enemy">Enemy</span>
+                        <h3 class="character-name">Native Wildlife</h3>
+                        <p class="character-title">Pharloom Creatures</p>
+                        <p class="character-description">
+                            The natural inhabitants of Pharloom who view Hornet as an intruder. These creatures range from small pests to massive predators that guard their territories fiercely.
+                        </p>
+                        <div class="character-traits">
+                            <span class="trait-tag">Varied</span>
+                            <span class="trait-tag">Territorial</span>
+                            <span class="trait-tag">Natural</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+        <div class="container">
+            <h2 class="section-title">Character Resources</h2>
+            <div class="links-grid">
+                <a href="gameplay.html" class="link-card">
+                    <h3>⚔️ Combat Guide</h3>
+                    <p>Learn strategies for each enemy type</p>
+                </a>
+                <a href="media.html" class="link-card">
+                    <h3>🖼️ Boss Gallery</h3>
+                    <p>View detailed boss information</p>
+                </a>
+                <a href="guides.html" class="link-card">
+                    <h3>📖 Character Stories</h3>
+                    <p>Discover complete character lore</p>
+                </a>
+                <a href="story.html" class="link-card">
+                    <h3>📚 Story Guide</h3>
+                    <p>Understand character motivations</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Hollow Knight: Silksong</h3>
+                <p>Your comprehensive source for all things Silksong</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="game-intro.html">Game Info</a></li>
+                    <li><a href="guides.html">Guides</a></li>
+                    <li><a href="news.html">News</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Game Info</h4>
+                <ul>
+                    <li><a href="gameplay.html">Gameplay</a></li>
+                    <li><a href="characters.html">Characters</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="media.html">Media</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">Reddit</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Hollow Knight: Silksong Fan Site. This is an unofficial fan website. Hollow Knight: Silksong is a trademark of Team Cherry.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Category functionality
+        function showCategory(category) {
+            // Remove active class from all category buttons
+            const categoryButtons = document.querySelectorAll('.category-button');
+            categoryButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+            
+            // Here you would implement actual filtering logic
+            // For now, we'll just show an alert
+            console.log('Show category:', category);
+            
+            // Scroll to relevant section
+            if (category === 'protagonist') {
+                document.querySelector('.featured-character-section').scrollIntoView({ behavior: 'smooth' });
+            } else if (category === 'allies') {
+                document.querySelector('.allies-section').scrollIntoView({ behavior: 'smooth' });
+            } else if (category === 'bosses') {
+                document.querySelector('.bosses-section').scrollIntoView({ behavior: 'smooth' });
+            } else if (category === 'npcs') {
+                document.querySelector('.npcs-section').scrollIntoView({ behavior: 'smooth' });
+            } else if (category === 'enemies') {
+                document.querySelector('.enemy-types').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
