@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hollow Knight: Silksong - Complete gameplay guide, combat system, mechanics, and features">
+    <meta name="keywords" content="Hollow Knight Silksong, gameplay, combat system, mechanics, Hornet abilities, quest system">
+    <meta name="author" content="Hollow Knight Silksong Fan Site">
+    <title>Gameplay - Hollow Knight: Silksong</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Gameplay-specific styles */
+        .gameplay-hero {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gameplay-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="combat" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0,10 L20,10 M10,0 L10,20" stroke="%23d4af37" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23combat)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .combat-section {
+            background: linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 100%);
+            padding: 80px 0;
+        }
+
+        .mechanic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .mechanic-card {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .mechanic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .ability-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .ability-item {
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .ability-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .ability-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .quest-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .quest-category {
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .quest-category:hover {
+            border-color: #d4af37;
+            transform: translateY(-3px);
+        }
+
+        .currency-system {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .currency-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 8px;
+        }
+
+        .currency-icon {
+            font-size: 2rem;
+        }
+
+        .progress-bar {
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 10px;
+            height: 8px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #d4af37, #f4d03f);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .enemy-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #d4af37;
+            text-align: center;
+        }
+
+        .stat-label {
+            text-align: center;
+            color: #c0c0c0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>Hollow Knight: Silksong</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="game-intro.html" class="nav-link">Game Intro</a></li>
+                <li><a href="story.html" class="nav-link">Story</a></li>
+                <li><a href="gameplay.html" class="nav-link active">Gameplay</a></li>
+                <li><a href="characters.html" class="nav-link">Characters</a></li>
+                <li><a href="locations.html" class="nav-link">Locations</a></li>
+                <li><a href="guides.html" class="nav-link">Guides</a></li>
+                <li><a href="media.html" class="nav-link">Media</a></li>
+                <li><a href="news.html" class="nav-link">News</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Gameplay Hero -->
+    <section class="gameplay-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Gameplay Features</h1>
+                <p>Master Hornet's acrobatic combat and explore the vast kingdom of Pharloom</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Combat System -->
+    <section class="combat-section">
+        <div class="container">
+            <h2 class="section-title">Combat System</h2>
+            <div class="combat-intro">
+                <p>Hollow Knight: Silksong features a refined combat system that builds upon the foundation of the original game while introducing new mechanics tailored to Hornet's unique abilities as a fast, agile fighter.</p>
+            </div>
+            
+            <div class="mechanic-grid">
+                <div class="mechanic-card">
+                    <h3>⚔️ Needle Combat</h3>
+                    <p>Hornet wields a needle as her primary weapon, allowing for swift, precise strikes. The combat system emphasizes speed and agility over the Knight's heavier, more deliberate approach.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+                    <small>Speed Rating: 85%</small>
+                </div>
+                
+                <div class="mechanic-card">
+                    <h3>🧵 Silk Abilities</h3>
+                    <p>Utilize Hornet's silk-based powers for both offense and defense. Silk can be used for traversal, creating barriers, or enhancing attacks.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%;"></div>
+                    </div>
+                    <small>Versatility: 90%</small>
+                </div>
+                
+                <div class="mechanic-card">
+                    <h3>🏃‍♀️ Acrobatic Movement</h3>
+                    <p>Hornet moves with incredible agility, performing acrobatic maneuvers that allow for dynamic combat positioning and evasion.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%;"></div>
+                    </div>
+                    <small>Agility: 95%</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hornet's Abilities -->
+    <section class="hornet-abilities">
+        <div class="container">
+            <h2 class="section-title">Hornet's Abilities</h2>
+            <div class="ability-showcase">
+                <div class="ability-item">
+                    <div class="ability-icon">🪡</div>
+                    <h3>Needle Strike</h3>
+                    <p>Swift melee attacks with her signature needle weapon. Combo chains can be extended with precise timing, dealing increasing damage with each successive hit.</p>
+                </div>
+                <div class="ability-item">
+                    <div class="ability-icon">🧵</div>
+                    <h3>Silk Thread</h3>
+                    <p>Shoot silk threads for traversal and combat. Can be used to grapple to distant platforms, bind enemies, or create temporary barriers. Consumes silk resource.</p>
+                </div>
+                <div class="ability-item">
+                    <div class="ability-icon">🛡️</div>
+                    <h3>Silk Shield</h3>
+                    <p>Create protective barriers using silk. Blocks incoming damage and can be upgraded to reflect projectiles back at enemies. Effective for crowd control.</p>
+                </div>
+                <div class="ability-item">
+                    <div class="ability-icon">⚡</div>
+                    <h3>Dash Strike</h3>
+                    <p>Quick dash attacks that pierce through enemies. Invulnerable during dash, making it essential for both offense and evasion. Can be chained multiple times.</p>
+                </div>
+                <div class="ability-item">
+                    <div class="ability-icon">🎯</div>
+                    <h3>Precise Strike</h3>
+                    <p>Charged attacks for maximum damage. Can break enemy guards and deal critical damage to weak points. Timing is crucial for maximum effectiveness.</p>
+                </div>
+                <div class="ability-item">
+                    <div class="ability-icon">🌀</div>
+                    <h3>Whirlwind</h3>
+                    <p>Spinning attack that hits multiple enemies. Excellent for crowd control and clearing groups of weaker foes. Can be enhanced with silk for additional effects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Combat Techniques -->
+    <section class="advanced-combat">
+        <div class="container">
+            <h2 class="section-title">Advanced Combat Techniques</h2>
+            <div class="mechanic-grid">
+                <div class="mechanic-card">
+                    <h3>🎯 Perfect Parry</h3>
+                    <p>Time your blocks perfectly to parry enemy attacks, opening them for devastating counterattacks. Perfect parries restore silk and can stagger even the toughest enemies.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 95%;"></div>
+                    </div>
+                    <small>Mastery Difficulty: Expert</small>
+                </div>
+                
+                <div class="mechanic-card">
+                    <h3>🧵 Silk Combos</h3>
+                    <p>Chain silk abilities with standard attacks for devastating combos. Each ability consumes different amounts of silk, requiring strategic resource management during combat.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 88%;"></div>
+                    </div>
+                    <small>Mastery Difficulty: Advanced</small>
+                </div>
+                
+                <div class="mechanic-card">
+                    <h3>⚡ Air Combat</h3>
+                    <p>Master aerial combat with Hornet's enhanced mobility. Perform attacks while jumping, dashing, or hanging from silk threads for dynamic combat scenarios.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 92%;"></div>
+                    </div>
+                    <small>Mastery Difficulty: Advanced</small>
+                </div>
+                
+                <div class="mechanic-card">
+                    <h3>🔄 Quick Recovery</h3>
+                    <p>Recover instantly from attacks and maintain offensive pressure. Essential for dealing with fast-paced boss battles and overwhelming enemy groups.</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+                    <small>Mastery Difficulty: Intermediate</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quest System -->
+    <section class="quest-system">
+        <div class="container">
+            <h2 class="section-title">Quest System</h2>
+            <p>Silksong introduces a comprehensive quest system that encourages exploration and discovery throughout Pharloom. Quests are divided into four main categories:</p>
+            
+            <div class="quest-categories">
+                <div class="quest-category">
+                    <h3>📦 Gather</h3>
+                    <p>Collection quests that require gathering specific items, materials, or resources scattered throughout the world.</p>
+                </div>
+                <div class="quest-category">
+                    <h3>🚶‍♀️ Wayfarer</h3>
+                    <p>Exploration-based quests that challenge players to reach specific locations or discover hidden areas.</p>
+                </div>
+                <div class="quest-category">
+                    <h3>🎯 Hunt</h3>
+                    <p>Combat-focused quests that task players with defeating specific enemies or completing combat challenges.</p>
+                </div>
+                <div class="quest-category">
+                    <h3>👑 Grand Hunt</h3>
+                    <p>Epic boss battles and major story quests that advance the main narrative and provide significant rewards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Currency System -->
+    <section class="currency-system">
+        <div class="container">
+            <h2 class="section-title">Currency & Resources</h2>
+            <div class="currency-items">
+                <div class="currency-item">
+                    <div class="currency-icon">💰</div>
+                    <div class="currency-info">
+                        <h3>Rosaries</h3>
+                        <p>The primary currency obtained by defeating enemies. Similar to Geo from Hollow Knight, but with unique mechanics. Lost upon death unless put on a string.</p>
+                    </div>
+                </div>
+                <div class="currency-item">
+                    <div class="currency-icon">🔧</div>
+                    <div class="currency-info">
+                        <h3>Shell Shards</h3>
+                        <p>Used for crafting tools and repairing equipment. Essential for maintaining Hornet's gear and abilities.</p>
+                    </div>
+                </div>
+                <div class="currency-item">
+                    <div class="currency-icon">🏆</div>
+                    <div class="currency-info">
+                        <h3>Crests</h3>
+                        <p>Special items that provide passive bonuses and enhancements when equipped. Can be upgraded throughout the game.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Statistics -->
+    <section class="game-stats">
+        <div class="container">
+            <h2 class="section-title">Game World Scale</h2>
+            <div class="enemy-stats">
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">New Enemies</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Epic Bosses</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Rest Areas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">165+</div>
+                    <div class="stat-label">Total Enemies</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Hours of Gameplay</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Major Areas</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools & Crafting -->
+    <section class="tools-crafting">
+        <div class="container">
+            <h2 class="section-title">Tools & Crafting</h2>
+            <div class="mechanic-grid">
+                <div class="mechanic-card">
+                    <h3>🔧 Craftable Tools</h3>
+                    <p>Create and customize various tools using gathered materials. Tools serve different purposes in combat, exploration, and puzzle-solving.</p>
+                    <ul>
+                        <li>Combat-enhancing tools</li>
+                        <li>Traversal aids</li>
+                        <li>Puzzle-solving items</li>
+                        <li>Defensive equipment</li>
+                    </ul>
+                </div>
+                
+                <div class="mechanic-card">
+                    <h3>🛠️ Repair System</h3>
+                    <p>Tools require maintenance and repair using Shell Shards. This adds strategic depth to resource management and equipment usage.</p>
+                    <ul>
+                        <li>Durability system</li>
+                        <li>Repair costs scale with tool power</li>
+                        <li>Emergency repair options</li>
+                        <li>Upgrade paths available</li>
+                    </ul>
+                </div>
+                
+                <div class="mechanic-card">
+                    <h3>🎨 Customization</h3>
+                    <p>Personalize Hornet's appearance and abilities through various customization options and upgrades.</p>
+                    <ul>
+                        <li>Visual customization</li>
+                        <li>Ability enhancements</li>
+                        <li>Playstyle modifications</li>
+                        <li>Lore-friendly options</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Difficulty & Progression -->
+    <section class="difficulty-progression">
+        <div class="container">
+            <h2 class="section-title">Difficulty & Progression</h2>
+            <div class="mechanic-grid">
+                <div class="mechanic-card">
+                    <h3>📈 Progressive Difficulty</h3>
+                    <p>The game features a natural difficulty curve that challenges players as they progress, with new enemy types and environmental hazards introduced gradually.</p>
+                </div>
+                
+                <div class="mechanic-card">
+                    <h3>🎯 Multiple Endings</h3>
+                    <p>Player choices and completion percentage influence the outcome, encouraging multiple playthroughs and thorough exploration.</p>
+                </div>
+                
+                <div class="mechanic-card">
+                    <h3>🏆 Challenge Modes</h3>
+                    <p>Additional difficulty settings and challenge modes for experienced players seeking greater tests of skill.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+        <div class="container">
+            <h2 class="section-title">Master the Game</h2>
+            <div class="links-grid">
+                <a href="guides.html" class="link-card">
+                    <h3>📖 Combat Guide</h3>
+                    <p>Master every ability and technique</p>
+                </a>
+                <a href="characters.html" class="link-card">
+                    <h3>👥 Enemy Guide</h3>
+                    <p>Learn all enemy patterns and weaknesses</p>
+                </a>
+                <a href="locations.html" class="link-card">
+                    <h3>🗺️ Area Guide</h3>
+                    <p>Navigate every corner of Pharloom</p>
+                </a>
+                <a href="media.html" class="link-card">
+                    <h3>🎮 Gameplay Videos</h3>
+                    <p>Watch advanced techniques in action</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Hollow Knight: Silksong</h3>
+                <p>Your comprehensive source for all things Silksong</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="game-intro.html">Game Info</a></li>
+                    <li><a href="guides.html">Guides</a></li>
+                    <li><a href="news.html">News</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Game Info</h4>
+                <ul>
+                    <li><a href="gameplay.html">Gameplay</a></li>
+                    <li><a href="characters.html">Characters</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="media.html">Media</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">Reddit</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Hollow Knight: Silksong Fan Site. This is an unofficial fan website. Hollow Knight: Silksong is a trademark of Team Cherry.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

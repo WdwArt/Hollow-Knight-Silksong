@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hollow Knight: Silksong - Complete location guide featuring Pharloom world map, areas, and exploration details">
+    <meta name="keywords" content="Hollow Knight Silksong, locations, Pharloom, world map, areas, exploration, regions, game world">
+    <meta name="author" content="Hollow Knight Silksong Fan Site">
+    <title>Locations - Hollow Knight: Silksong</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Locations-specific styles */
+        .locations-hero {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f1a 100%);
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .locations-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="map" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0,0 L20,0 M0,0 L0,20" stroke="%23d4af37" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23map)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .world-map-section {
+            background: linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 100%);
+            padding: 80px 0;
+        }
+
+        .world-map-container {
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            margin: 2rem 0;
+        }
+
+        .map-overview {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .map-image {
+            background: linear-gradient(135deg, #1a1a2e, #2a2a4e);
+            border-radius: 15px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: #d4af37;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><pattern id="mapgrid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0,0 L20,0 M0,0 L0,20" stroke="%23d4af37" stroke-width="0.3" opacity="0.2"/></pattern></defs><rect width="200" height="200" fill="url(%23mapgrid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .area-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .area-card {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .area-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .area-image {
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a2e, #2a2a4e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #d4af37;
+        }
+
+        .area-info {
+            padding: 1.5rem;
+        }
+
+        .area-name {
+            color: #d4af37;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .area-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .type-town {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            border: 1px solid #4CAF50;
+        }
+
+        .type-dungeon {
+            background: rgba(244, 67, 54, 0.2);
+            color: #F44336;
+            border: 1px solid #F44336;
+        }
+
+        .type-wilderness {
+            background: rgba(255, 193, 7, 0.2);
+            color: #FFC107;
+            border: 1px solid #FFC107;
+        }
+
+        .type-sacred {
+            background: rgba(156, 39, 176, 0.2);
+            color: #9C27B0;
+            border: 1px solid #9C27B0;
+        }
+
+        .area-description {
+            color: #c0c0c0;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .area-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .feature-tag {
+            background: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .area-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.5rem;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .region-overview {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .region-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .hidden-areas {
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .hidden-area-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .hidden-area-item {
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+        }
+
+        .exploration-tips {
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .tip-item {
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .tip-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .area-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-image {
+                height: 300px;
+                font-size: 4rem;
+            }
+            
+            .region-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hidden-area-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>Hollow Knight: Silksong</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="game-intro.html" class="nav-link">Game Intro</a></li>
+                <li><a href="story.html" class="nav-link">Story</a></li>
+                <li><a href="gameplay.html" class="nav-link">Gameplay</a></li>
+                <li><a href="characters.html" class="nav-link">Characters</a></li>
+                <li><a href="locations.html" class="nav-link active">Locations</a></li>
+                <li><a href="guides.html" class="nav-link">Guides</a></li>
+                <li><a href="media.html" class="nav-link">Media</a></li>
+                <li><a href="news.html" class="nav-link">News</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Locations Hero -->
+    <section class="locations-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1>Locations</h1>
+                <p>Explore the vast interconnected kingdom of Pharloom</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- World Map Overview -->
+    <section class="world-map-section">
+        <div class="container">
+            <h2 class="section-title">The Kingdom of Pharloom</h2>
+            <div class="world-map-container">
+                <div class="map-overview">
+                    <h3>Interactive World Map</h3>
+                    <p>Pharloom is a vast, interconnected kingdom filled with unique environments, challenging platforming sequences, and countless secrets to discover. Unlike Hallownest, Pharloom is characterized by its silk-infested landscapes and religious architecture.</p>
+                </div>
+                
+                <div class="map-image">
+                    <div>🗺️</div>
+                </div>
+                
+                <div class="region-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">15+</div>
+                        <div class="stat-label">Major Areas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">100+</div>
+                        <div class="stat-label">Rest Areas</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">40+</div>
+                        <div class="stat-label">Boss Locations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">200+</div>
+                        <div class="stat-label">Enemy Types</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Major Areas -->
+    <section class="major-areas">
+        <div class="container">
+            <h2 class="section-title">Major Areas</h2>
+            <div class="area-grid">
+                <div class="area-card">
+                    <div class="area-image">
+                        <div>🏘️</div>
+                    </div>
+                    <div class="area-info">
+                        <span class="area-type type-town">Town</span>
+                        <h3 class="area-name">Bone Bottom</h3>
+                        <p class="area-description">
+                            A small town inhabited by pilgrims seeking answers in Pharloom. This serves as one of the first major settlements Hornet encounters, offering quests, supplies, and safe haven.
+                        </p>
+                        <div class="area-features">
+                            <span class="feature-tag">Safe Zone</span>
+                            <span class="feature-tag">Quest Hub</span>
+                            <span class="feature-tag">Merchants</span>
+                            <span class="feature-tag">Save Points</span>
+                        </div>
+                        <div class="area-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">Bench Locations</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Quests Available</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="area-card">
+                    <div class="area-image">
+                        <div>🗺️</div>
+                    </div>
+                    <div class="area-info">
+                        <span class="area-type type-town">Hub</span>
+                        <h3 class="area-name">The Marrow</h3>
+                        <p class="area-description">
+                            A central hub area where Hornet meets Shakra, a cartographer who provides essential maps, tools, and items for local currency (Rosaries).
+                        </p>
+                        <div class="area-features">
+                            <span class="feature-tag">Central Hub</span>
+                            <span class="feature-tag">Map Services</span>
+                            <span class="feature-tag">Equipment Shop</span>
+                            <span class="feature-tag">Fast Travel</span>
+                        </div>
+                        <div class="area-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">5</div>
+                                <div class="stat-label">Vendors</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">Map Unlocks</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="area-card">
+                    <div class="area-image">
+                        <div>🏰</div>
+                    </div>
+                    <div class="area-info">
+                        <span class="area-type type-dungeon">Dungeon</span>
+                        <h3 class="area-name">Greymoor</h3>
+                        <p class="area-description">
+                            One of the largest areas Team Cherry has ever created, featuring intricate architecture, challenging platforming sequences, and numerous secrets.
+                        </p>
+                        <div class="area-features">
+                            <span class="feature-tag">Massive Scale</span>
+                            <span class="feature-tag">Complex Layout</span>
+                            <span class="feature-tag">Platforming</span>
+                            <span class="feature-tag">Multiple Bosses</span>
+                        </div>
+                        <div class="area-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">7</div>
+                                <div class="stat-label">Boss Battles</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">15</div>
+                                <div class="stat-label">Bench Locations</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="area-card">
+                    <div class="area-image">
+                        <div>⛪</div>
+                    </div>
+                    <div class="area-info">
+                        <span class="area-type type-sacred">Sacred</span>
+                        <h3 class="area-name">The Citadel</h3>
+                        <p class="area-description">
+                            The ultimate destination of Hornet's journey, a massive religious institution at Pharloom's summit that holds the answers she seeks.
+                        </p>
+                        <div class="area-features">
+                            <span class="feature-tag">Final Area</span>
+                            <span class="feature-tag">Religious Theme</span>
+                            <span class="feature-tag">Multiple Levels</span>
+                            <span class="feature-tag">Final Boss</span>
+                        </div>
+                        <div class="area-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">5</div>
+                                <div class="stat-label">Levels</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">10</div>
+                                <div class="stat-label">Major Bosses</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="area-card">
+                    <div class="area-image">
+                        <div>🕸️</div>
+                    </div>
+                    <div class="area-info">
+                        <span class="area-type type-wilderness">Wilderness</span>
+                        <h3 class="area-name">Silken Weald</h3>
+                        <p class="area-description">
+                            A forest-like area heavily infested with silk threads, where the natural and artificial blend together in disturbing ways.
+                        </p>
+                        <div class="area-features">
+                            <span class="feature-tag">Silk Theme</span>
+                            <span class="feature-tag">Organic Design</span>
+                            <span class="feature-tag">Traps</span>
+                            <span class="feature-tag">Stealth Sections</span>
+                        </div>
+                        <div class="area-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">4</div>
+                                <div class="stat-label">Boss Battles</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Bench Locations</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="area-card">
+                    <div class="area-image">
+                        <div>🔥</div>
+                    </div>
+                    <div class="area-info">
+                        <span class="area-type type-dungeon">Dungeon</span>
+                        <h3 class="area-name">Furnace Depths</h3>
+                        <p class="area-description">
+                            A deep, underground area filled with molten chambers and mechanical constructs, testing Hornet's endurance and precision.
+                        </p>
+                        <div class="area-features">
+                            <span class="feature-tag">Heat Mechanics</span>
+                            <span class="feature-tag">Mechanical Enemies</span>
+                            <span class="feature-tag">Lava Hazards</span>
+                            <span class="feature-tag">Precision Platforming</span>
+                        </div>
+                        <div class="area-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">6</div>
+                                <div class="stat-label">Boss Battles</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">10</div>
+                                <div class="stat-label">Bench Locations</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Region Overview -->
+    <section class="region-overview">
+        <div class="container">
+            <h2 class="section-title">Pharloom by Region</h2>
+            <div class="region-content">
+                <h3>Lower Regions</h3>
+                <p>The lower regions of Pharloom serve as the starting areas for Hornet's journey. These areas are relatively safer and contain more settlements where pilgrims have gathered. The silk infestation is present but less overwhelming here.</p>
+                
+                <h3>Middle Regions</h3>
+                <p>As Hornet ascends, the middle regions present greater challenges with more complex layouts, stronger enemies, and heavier silk infestation. These areas feature the iconic Team Cherry level design with interconnected paths and numerous shortcuts.</p>
+                
+                <h3>Upper Regions</h3>
+                <p>The upper regions, including The Citadel, represent the pinnacle of Pharloom's religious and political power. These areas are heavily guarded, feature the most challenging platforming sections, and contain the game's most formidable bosses.</p>
+                
+                <h3>Hidden Areas</h3>
+                <p>Scattered throughout Pharloom are numerous hidden areas, secret passages, and optional challenges that reward thorough exploration and skilled play. These areas often contain the best equipment and most powerful upgrades.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hidden Areas -->
+    <section class="hidden-areas">
+        <div class="container">
+            <h2 class="section-title">Hidden & Secret Areas</h2>
+            <p>Discover these secret locations through exploration and puzzle-solving:</p>
+            <div class="hidden-area-list">
+                <div class="hidden-area-item">
+                    <h4>🗝️ The Chamber of Secrets</h4>
+                    <p>Ancient knowledge repository</p>
+                </div>
+                <div class="hidden-area-item">
+                    <h4>💎 Crystal Caverns</h4>
+                    <p>Beautiful but dangerous caves</p>
+                </div>
+                <div class="hidden-area-item">
+                    <h4>🌙 Moonlit Gardens</h4>
+                    <p>Peaceful sanctuary area</p>
+                </div>
+                <div class="hidden-area-item">
+                    <h4>⚡ Storm Peaks</h4>
+                    <p>Challenging mountain area</p>
+                </div>
+                <div class="hidden-area-item">
+                    <h4>🏛️ Ancient Ruins</h4>
+                    <p>Pre-Citadel civilization</p>
+                </div>
+                <div class="hidden-area-item">
+                    <h4>🌊 Underground Lake</h4>
+                    <p>Aquatic environment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Exploration Tips -->
+    <section class="exploration-tips">
+        <div class="container">
+            <h2 class="section-title">Exploration Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <div class="tip-icon">🗺️</div>
+                    <h4>Map Every Area</h4>
+                    <p>Purchase maps from Shakra and fill them completely to uncover all secrets and shortcuts.</p>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-icon">🧵</div>
+                    <h4>Use Silk Abilities</h4>
+                    <p>Master Hornet's silk-based movement abilities to reach previously inaccessible areas.</p>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-icon">👂</div>
+                    <h4>Listen for Audio Cues</h4>
+                    <p>Pay attention to environmental sounds and music changes that indicate nearby secrets.</p>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-icon">🔍</div>
+                    <h4>Examine Walls</h4>
+                    <p>Breakable walls and hidden passages are common throughout Pharloom.</p>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-icon">📋</div>
+                    <h4>Complete Quests</h4>
+                    <p>Many quests lead to new areas or provide keys to unlock previously inaccessible locations.</p>
+                </div>
+                <div class="tip-item">
+                    <div class="tip-icon">💎</div>
+                    <h4>Collect Everything</h4>
+                    <p>Gather resources and items that might be needed to craft tools for accessing new areas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+        <div class="container">
+            <h2 class="section-title">Explore Pharloom</h2>
+            <div class="links-grid">
+                <a href="gameplay.html" class="link-card">
+                    <h3>⚔️ Combat Guide</h3>
+                    <p>Prepare for area challenges</p>
+                </a>
+                <a href="characters.html" class="link-card">
+                    <h3>👥 Area Inhabitants</h3>
+                    <p>Meet the locals and foes</p>
+                </a>
+                <a href="guides.html" class="link-card">
+                    <h3>📖 Area Walkthroughs</h3>
+                    <p>Complete area guides</p>
+                </a>
+                <a href="media.html" class="link-card">
+                    <h3>🖼️ Area Screenshots</h3>
+                    <p>Visual tour of Pharloom</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Hollow Knight: Silksong</h3>
+                <p>Your comprehensive source for all things Silksong</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="game-intro.html">Game Info</a></li>
+                    <li><a href="guides.html">Guides</a></li>
+                    <li><a href="news.html">News</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Game Info</h4>
+                <ul>
+                    <li><a href="gameplay.html">Gameplay</a></li>
+                    <li><a href="characters.html">Characters</a></li>
+                    <li><a href="locations.html">Locations</a></li>
+                    <li><a href="media.html">Media</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">Reddit</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Hollow Knight: Silksong Fan Site. This is an unofficial fan website. Hollow Knight: Silksong is a trademark of Team Cherry.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
